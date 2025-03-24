@@ -1,0 +1,86 @@
+/* Mobile-first approach */
+.hide-on-mobile {
+  display: none !important;
+}
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: initial !important;
+  }
+  
+  .hide-on-tablet {
+    display: none !important;
+  }
+  
+  .col-tablet-6 {
+    width: 50% !important;
+  }
+  
+  .col-tablet-4 {
+    width: 33.333% !important;
+  }
+  
+  .col-tablet-8 {
+    width: 66.666% !important;
+  }
+}
+
+/* Laptop (1024px and up) */
+@media (min-width: 1024px) {
+  .hide-on-tablet {
+    display: initial !important;
+  }
+  
+  .hide-on-laptop {
+    display: none !important;
+  }
+  
+  .col-laptop-3 {
+    width: 25% !important;
+  }
+  
+  .col-laptop-4 {
+    width: 33.333% !important;
+  }
+  
+  .col-laptop-6 {
+    width: 50% !important;
+  }
+  
+  .col-laptop-8 {
+    width: 66.666% !important;
+  }
+}
+
+/* Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .hide-on-laptop {
+    display: initial !important;
+  }
+  
+  .hide-on-desktop {
+    display: none !important;
+  }
+}
+
+/* Utility classes for responsive spacing */
+.responsive-padding {
+  padding: var(--space-md);
+}
+
+.responsive-margin {
+  margin: var(--space-md);
+}
+
+@media (max-width: 767px) {
+  .stack-on-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .center-on-mobile {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+} 

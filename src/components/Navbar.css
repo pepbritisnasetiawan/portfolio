@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 5%;
+  padding: clamp(1rem, 3vw, 2rem) 5%;
   background-color: transparent;
   transition: all var(--transition-speed) ease;
   z-index: 1000;
@@ -16,7 +16,7 @@
 
 .navbar.scrolled {
   background-color: var(--card-bg);
-  padding: 1rem 5%;
+  padding: clamp(0.75rem, 2vw, 1rem) 5%;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -24,7 +24,7 @@
 
 /* Dark mode specific styles */
 [data-theme='dark'] .navbar.scrolled {
-  background-color: rgba(30, 30, 30, 0.98); /* Darker background for dark mode */
+  background-color: rgba(30, 30, 30, 0.98);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -41,7 +41,8 @@
   text-decoration: underline;
 }
 
-.nav-links {
+/* Desktop navigation */
+.desktop-nav {
   display: flex;
   gap: 3rem;
   align-items: center;
@@ -69,6 +70,7 @@
   color: var(--accent-color);
 }
 
+/* Theme toggle button */
 .theme-toggle {
   background: var(--light-bg);
   border: none;
@@ -115,4 +117,334 @@
 
 .theme-toggle:active .theme-toggle-circle {
   transform: scale(0.95);
+}
+
+/* Hamburger menu button - improved animation */
+.hamburger-menu {
+  position: fixed;
+  top: clamp(1rem, 3vw, 2rem);
+  right: 5%;
+  z-index: 1002;
+  display: none;
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-menu:hover {
+  transform: scale(1.1);
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: transform 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6), 
+              opacity 0.3s ease,
+              background-color 0.3s ease;
+  transform-origin: center;
+}
+
+/* Improved hamburger animation */
+.hamburger-menu.open .hamburger-line:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+  background-color: var(--accent-color);
+}
+
+.hamburger-menu.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger-menu.open .hamburger-line:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+  background-color: var(--accent-color);
+}
+
+/* Mobile navigation overlay - improved blur */
+.nav-overlay {
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile navigation menu - improved glass effect */
+.mobile-nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.mobile-nav {
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 400px;
+  height: 100vh;
+  background-color: rgba(var(--card-bg-rgb, 255, 255, 255), 0.85);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  overflow-y: auto;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .mobile-nav {
+  background-color: rgba(30, 30, 30, 0.85);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Improved mobile nav header */
+.mobile-nav-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-top: 1rem;
+}
+
+.mobile-nav-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--accent-color), 
+    transparent
+  );
+}
+
+.mobile-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.mobile-close {
+  display: none;
+}
+
+/* Improved mobile nav links */
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  flex: 1;
+}
+
+.mobile-nav-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(var(--accent-color-rgb, 0, 102, 255), 0.1);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.mobile-nav-links a:hover {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+.mobile-nav-links a:hover::before {
+  width: 100%;
+}
+
+.mobile-nav-links a.active {
+  color: var(--accent-color);
+  background-color: rgba(var(--accent-color-rgb, 0, 102, 255), 0.1);
+}
+
+/* Improved mobile nav footer */
+.mobile-nav-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(var(--primary-color-rgb, 26, 26, 26), 0.1);
+  padding-top: 2rem;
+}
+
+/* Improved mobile theme toggle */
+.mobile-theme-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(var(--light-bg-rgb, 248, 249, 250), 0.5);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(var(--primary-color-rgb, 26, 26, 26), 0.05);
+}
+
+.mobile-theme-toggle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-theme-toggle span {
+  font-weight: 500;
+}
+
+/* Improved social links */
+.mobile-social-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.mobile-social-links a {
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  background-color: rgba(var(--light-bg-rgb, 248, 249, 250), 0.5);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(var(--primary-color-rgb, 26, 26, 26), 0.05);
+}
+
+.mobile-social-links a:hover {
+  color: var(--accent-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+}
+
+/* Add these CSS variables to your :root in App.css */
+:root {
+  --primary-color-rgb: 26, 26, 26;
+  --accent-color-rgb: 0, 102, 255;
+  --light-bg-rgb: 248, 249, 250;
+  --card-bg-rgb: 255, 255, 255;
+}
+
+[data-theme='dark'] {
+  --primary-color-rgb: 255, 255, 255;
+  --accent-color-rgb: 61, 145, 255;
+  --light-bg-rgb: 30, 30, 30;
+  --card-bg-rgb: 30, 30, 30;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 4%;
+  }
+  
+  .nav-brand a {
+    font-size: 1.5rem;
+  }
+  
+  .mobile-nav {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 1.3rem;
+  }
+}
+
+/* Animation for mobile menu items */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobile-nav-links a {
+  animation: fadeInRight 0.5s ease forwards;
+  animation-delay: calc(var(--item-index) * 0.1s);
+  opacity: 0;
+}
+
+/* Improve accessibility */
+.hamburger-menu:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Add glass effect to mobile menu */
+.mobile-nav {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(var(--card-bg-rgb), 0.9);
+}
+
+[data-theme='dark'] .mobile-nav {
+  background-color: rgba(30, 30, 30, 0.95);
 } 
