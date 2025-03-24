@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './Blog.css';
 
 const Blog = () => {
+  const [activeCategory, setActiveCategory] = useState('All');
+
   const blogPosts = [
     {
       id: 1,
@@ -44,26 +46,40 @@ const Blog = () => {
   ];
 
   return (
-    <section className="blog section">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="blog-content"
-      >
-        <h2>Security Blog</h2>
+    <section className="blog">
+      <div className="blog-container">
+        <motion.div 
+          className="blog-header"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="blog-title">Blog</h1>
+          <p className="blog-subtitle">
+            Thoughts, stories and ideas about cybersecurity and technology.
+          </p>
+        </motion.div>
+
         <div className="blog-categories">
-          <button className="category-btn active">All</button>
-          <button className="category-btn">Blue Team</button>
-          <button className="category-btn">Red Team</button>
+          {['All', 'Cybersecurity', 'Technology', 'Career'].map((category) => (
+            <button
+              key={category}
+              className={`category-btn ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
         </div>
+
         <div className="blog-grid">
           {blogPosts.map((post) => (
             <motion.article
               key={post.id}
               className="blog-card"
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <div className="blog-card-image">
                 <img src={post.image} alt={post.title} />
@@ -83,7 +99,7 @@ const Blog = () => {
             </motion.article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

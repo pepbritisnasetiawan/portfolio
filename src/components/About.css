@@ -1,9 +1,10 @@
 .about {
-  background-color: #f8f9fa;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .about-content {
-  max-width: 1000px;
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -17,19 +18,31 @@
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text {
+  color: var(--text-color);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.8;
 }
 
 .about-text p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--light-text);
+}
+
+.skills {
+  position: sticky;
+  top: 100px;
 }
 
 .skills h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .skill-tags {
@@ -39,15 +52,27 @@
 }
 
 .skill-tag {
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
 }
 
-@media (max-width: 768px) {
+.skill-tag:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .skills {
+    position: static;
   }
 } 

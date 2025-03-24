@@ -48,28 +48,52 @@ body {
 }
 
 .section {
-  padding: 8rem 5%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  padding: 8rem 2rem;
+  background-color: var(--background-color);
+}
+
+.section-content {
   max-width: var(--container-width);
   margin: 0 auto;
-  content-visibility: auto;
-  contain-intrinsic-size: 700px;
+  width: 100%;
+}
+
+.section-header {
+  margin-bottom: 5rem;
+  text-align: center;
 }
 
 .section-title {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 700;
-  margin-bottom: 2rem;
-  line-height: 1.2;
+  color: var(--primary-color);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
 }
 
 .section-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--light-text);
-  margin-bottom: 4rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-speed) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 .fade-in {
@@ -198,4 +222,45 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #0052cc;
+}
+
+/* Add will-change for elements that animate frequently */
+.navbar,
+.theme-toggle-circle,
+.project-card,
+.blog-card {
+  will-change: transform;
+}
+
+/* Optimize transitions */
+* {
+  /* Only transition specific properties instead of 'all' */
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* Use passive scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enable hardware acceleration for frequently animated elements */
+.navbar,
+.theme-toggle,
+.project-card,
+.blog-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

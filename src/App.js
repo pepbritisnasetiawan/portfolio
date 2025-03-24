@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Loading from './components/Loading';
@@ -17,7 +17,7 @@ const Contact = lazy(() => import('./components/Contact'));
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <BrowserRouter>
         <div className="App">
           <Navbar />
           <Suspense fallback={<Loading />}>
@@ -32,7 +32,7 @@ function App() {
             </Routes>
           </Suspense>
         </div>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

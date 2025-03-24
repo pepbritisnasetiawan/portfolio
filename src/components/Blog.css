@@ -1,119 +1,159 @@
 .blog {
-  background-color: #f8f9fa;
+  background-color: var(--background-color);
+  padding: 8rem 2rem;
 }
 
-.blog-content {
-  max-width: 1200px;
+.blog-container {
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
-.blog-content h2 {
+.blog-header {
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
+}
+
+.blog-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
   color: var(--primary-color);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+}
+
+.blog-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--light-text);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .blog-categories {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
 }
 
 .category-btn {
-  padding: 0.5rem 1.5rem;
-  border: 2px solid var(--secondary-color);
-  border-radius: 25px;
-  background: transparent;
-  color: var(--secondary-color);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--light-bg);
+  color: var(--text-color);
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .category-btn.active,
 .category-btn:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
   color: white;
+  transform: translateY(-2px);
 }
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
 }
 
 .blog-card {
-  background: white;
-  border-radius: 10px;
+  background-color: var(--card-bg);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-speed) ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 .blog-card-image {
+  width: 100%;
+  height: 250px;
   position: relative;
-  height: 200px;
+  overflow: hidden;
 }
 
 .blog-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.category-tag {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: var(--secondary-color);
-  color: white;
-  padding: 0.3rem 1rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.05);
 }
 
 .blog-card-content {
-  padding: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.blog-meta {
+.blog-card-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-card-meta {
+  color: var(--light-text);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
   display: flex;
-  justify-content: space-between;
-  color: #666;
+  gap: 1.5rem;
+}
+
+.blog-card-excerpt {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.blog-card-category {
+  display: inline-block;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
-.blog-card-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-}
-
-.blog-card-content p {
-  color: #666;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.read-more {
-  color: var(--secondary-color);
+.blog-card-link {
+  color: var(--accent-color);
   text-decoration: none;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 500;
-  transition: gap 0.3s ease;
+  transition: all var(--transition-speed) ease;
+  margin-top: auto;
 }
 
-.read-more:hover {
-  gap: 0.8rem;
+.blog-card-link:hover {
+  transform: translateX(5px);
 }
 
 @media (max-width: 768px) {
-  .blog-categories {
-    flex-wrap: wrap;
+  .blog {
+    padding: 6rem 1rem;
   }
   
   .category-btn {
