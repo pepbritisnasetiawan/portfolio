@@ -198,6 +198,7 @@
   pointer-events: none;
 }
 
+/* Update the mobile-nav to have better scrolling behavior */
 .mobile-nav {
   pointer-events: auto;
   position: fixed;
@@ -212,15 +213,109 @@
   flex-direction: column;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
   padding: 2rem;
-  overflow-y: auto;
+  overflow-y: auto; /* Enable vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
+  /* Ensure proper height calculation */
+  max-height: 100vh;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) transparent;
 }
 
-[data-theme='dark'] .mobile-nav {
-  background-color: rgba(30, 30, 30, 0.85);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
+/* Style the scrollbar for webkit browsers */
+.mobile-nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+.mobile-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mobile-nav::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 20px;
+}
+
+/* Improve the layout of mobile nav content */
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  /* Allow this section to shrink if needed */
+  flex-shrink: 1;
+  overflow-y: auto;
+}
+
+/* Ensure the footer stays at the bottom but is always visible */
+.mobile-nav-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(var(--primary-color-rgb, 26, 26, 26), 0.1);
+  padding-top: 2rem;
+  /* Prevent the footer from being cut off */
+  flex-shrink: 0;
+  padding-bottom: 1rem;
+}
+
+/* Adjust the mobile nav container to have better structure */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  /* This ensures the content takes at least the full height */
+  min-height: 100vh;
+}
+
+/* Make sure the mobile header doesn't scroll away */
+.mobile-nav-header {
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background-color: rgba(var(--card-bg-rgb, 255, 255, 255), 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 2;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Ensure the mobile menu has proper spacing on small screens */
+@media (max-height: 600px) {
+  .mobile-nav-links {
+    gap: 1rem;
+  }
+  
+  .mobile-nav-links a {
+    padding: 0.5rem 0;
+  }
+  
+  .mobile-nav-header {
+    margin-bottom: 1rem;
+  }
+  
+  .mobile-theme-toggle {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Add a subtle indicator that content is scrollable */
+.mobile-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to top, rgba(var(--card-bg-rgb, 255, 255, 255), 0.9), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav.scrollable::after {
+  opacity: 1;
 }
 
 /* Improved mobile nav header */
