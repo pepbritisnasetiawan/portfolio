@@ -9,7 +9,7 @@
 
 .projects-content h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
   margin-bottom: 3rem;
   color: var(--primary-color);
 }
