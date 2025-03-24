@@ -74,7 +74,7 @@ const Blog = () => {
     } else {
       setFilteredPosts(blogPosts.filter(post => post.category === activeCategory));
     }
-  }, [activeCategory]);
+  }, [activeCategory, blogPosts]);
 
   return (
     <section className="blog">
