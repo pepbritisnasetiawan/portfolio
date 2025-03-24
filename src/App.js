@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Loading from './components/Loading';
+import PerformanceMonitor from './components/PerformanceMonitor';
 import './App.css';
 
 // Lazy load components
@@ -18,6 +19,7 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <PerformanceMonitor />
         <div className="App">
           <Navbar />
           <Suspense fallback={<Loading />}>
