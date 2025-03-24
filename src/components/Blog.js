@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './Blog.css';
@@ -7,7 +7,8 @@ const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [filteredPosts, setFilteredPosts] = useState([]);
 
-  const blogPosts = [
+  // Wrap blogPosts in useMemo to prevent recreation on every render
+  const blogPosts = useMemo(() => [
     {
       id: 1,
       category: 'Blue Team',
@@ -62,10 +63,10 @@ const Blog = () => {
       readTime: '9 min read',
       image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3'
     }
-  ];
+  ], []); // Empty dependency array means this will only be created once
 
   // Get all unique categories
-  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
+  const categories = useMemo(() => ['All', ...new Set(blogPosts.map(post => post.category))], [blogPosts]);
 
   // Filter posts when category changes
   useEffect(() => {
