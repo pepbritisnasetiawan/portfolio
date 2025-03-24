@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './Blog.css';
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   const blogPosts = [
     {
@@ -42,26 +43,51 @@ const Blog = () => {
       date: '2024-02-28',
       readTime: '15 min read',
       image: 'https://images.unsplash.com/photo-1563206767-0c897e525511?ixlib=rb-4.0.3'
+    },
+    {
+      id: 5,
+      category: 'Cybersecurity',
+      title: 'Zero Trust Architecture Explained',
+      excerpt: 'A deep dive into implementing Zero Trust security models in modern organizations...',
+      date: '2024-02-20',
+      readTime: '11 min read',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3'
+    },
+    {
+      id: 6,
+      category: 'Technology',
+      title: 'The Future of Cloud Security',
+      excerpt: 'Exploring emerging trends and best practices in securing cloud infrastructure...',
+      date: '2024-02-15',
+      readTime: '9 min read',
+      image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3'
     }
   ];
+
+  // Get all unique categories
+  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
+
+  // Filter posts when category changes
+  useEffect(() => {
+    if (activeCategory === 'All') {
+      setFilteredPosts(blogPosts);
+    } else {
+      setFilteredPosts(blogPosts.filter(post => post.category === activeCategory));
+    }
+  }, [activeCategory]);
 
   return (
     <section className="blog">
       <div className="blog-container">
-        <motion.div 
-          className="blog-header"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="blog-title">Blog</h1>
+        <div className="blog-header">
+          <h1 className="blog-title">Blog & Articles</h1>
           <p className="blog-subtitle">
-            Thoughts, stories and ideas about cybersecurity and technology.
+            Thoughts, insights, and perspectives on cybersecurity, technology, and more.
           </p>
-        </motion.div>
+        </div>
 
         <div className="blog-categories">
-          {['All', 'Cybersecurity', 'Technology', 'Career'].map((category) => (
+          {categories.map((category) => (
             <button
               key={category}
               className={`category-btn ${activeCategory === category ? 'active' : ''}`}
@@ -72,33 +98,49 @@ const Blog = () => {
           ))}
         </div>
 
-        <div className="blog-grid">
-          {blogPosts.map((post) => (
-            <motion.article
-              key={post.id}
-              className="blog-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="blog-card-image">
-                <img src={post.image} alt={post.title} />
-                <span className="category-tag">{post.category}</span>
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeCategory}
+            className="blog-grid"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredPosts.length > 0 ? (
+              filteredPosts.map((post) => (
+                <motion.article
+                  key={post.id}
+                  className="blog-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  layout
+                >
+                  <div className="blog-card-image">
+                    <img src={post.image} alt={post.title} loading="lazy" />
+                    <span className="category-tag">{post.category}</span>
+                  </div>
+                  <div className="blog-card-content">
+                    <div className="blog-meta">
+                      <span className="date">{post.date}</span>
+                      <span className="read-time">{post.readTime}</span>
+                    </div>
+                    <h3>{post.title}</h3>
+                    <p>{post.excerpt}</p>
+                    <Link to={`/blog/${post.id}`} className="read-more">
+                      Read More <i className="fas fa-arrow-right"></i>
+                    </Link>
+                  </div>
+                </motion.article>
+              ))
+            ) : (
+              <div className="no-posts">
+                <p>No posts found in this category.</p>
               </div>
-              <div className="blog-card-content">
-                <div className="blog-meta">
-                  <span className="date">{post.date}</span>
-                  <span className="read-time">{post.readTime}</span>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <Link to={`/blog/${post.id}`} className="read-more">
-                  Read More <i className="fas fa-arrow-right"></i>
-                </Link>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

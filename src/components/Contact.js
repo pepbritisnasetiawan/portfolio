@@ -1,8 +1,64 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
+  const form = useRef();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState({
+    submitted: false,
+    success: false,
+    error: null
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Replace these with your actual EmailJS service, template, and user IDs
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID', 
+        'YOUR_TEMPLATE_ID', 
+        form.current, 
+        'YOUR_PUBLIC_KEY'
+      );
+      
+      if (result.text === 'OK') {
+        // Reset form after successful submission
+        setFormData({ name: '', email: '', message: '' });
+        setFormStatus({
+          submitted: true,
+          success: true,
+          error: null
+        });
+      }
+    } catch (error) {
+      setFormStatus({
+        submitted: true,
+        success: false,
+        error: 'There was an error sending your message. Please try again.'
+      });
+      console.error('Email error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="contact section">
       <div className="contact-content">
@@ -33,7 +89,7 @@ const Contact = () => {
                 </svg>
                 <div className="contact-item-content">
                   <span className="contact-item-label">Phone</span>
-                  <div className="contact-item-value">+62 123 456 789</div>
+                  <div className="contact-item-value">+62 895 3355 87822</div>
                 </div>
               </div>
 
@@ -45,7 +101,7 @@ const Contact = () => {
                 <div className="contact-item-content">
                   <span className="contact-item-label">Email</span>
                   <div className="contact-item-value">
-                    <a href="mailto:hello@febrian.com">hello@febrian.com</a>
+                    <a href="mailto:febri30tisna@gmail.com">febri30tisna@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -64,46 +120,96 @@ const Contact = () => {
           </motion.div>
 
           <motion.form 
+            ref={form}
             className="contact-form"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            name="contact" 
+            method="POST" 
+            data-netlify="true"
+            onSubmit={handleSubmit}
           >
-            <div className="form-group">
-              <label className="form-label" htmlFor="name">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                className="form-input" 
-                placeholder="Your name"
-                required 
-              />
-            </div>
+            <input type="hidden" name="form-name" value="contact" />
+            {formStatus.submitted && formStatus.success ? (
+              <div className="form-success">
+                <svg className="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                  <path d="M22 4L12 14.01l-3-3" />
+                </svg>
+                <h3>Message Sent!</h3>
+                <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+                <button 
+                  type="button" 
+                  className="form-submit"
+                  onClick={() => setFormStatus({ submitted: false, success: false, error: null })}
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="name">Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="user_name"
+                    className="form-input" 
+                    placeholder="Your name"
+                    required 
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                className="form-input" 
-                placeholder="your@email.com"
-                required 
-              />
-            </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="email">Email</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="user_email"
+                    className="form-input" 
+                    placeholder="your@email.com"
+                    required 
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <div className="form-group">
-              <label className="form-label" htmlFor="message">Message</label>
-              <textarea 
-                id="message" 
-                className="form-textarea" 
-                placeholder="How can I help you?"
-                required
-              />
-            </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="message">Message</label>
+                  <textarea 
+                    id="message" 
+                    name="message"
+                    className="form-textarea" 
+                    placeholder="How can I help you?"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <button type="submit" className="form-submit">
-              Send Message
-            </button>
+                {formStatus.error && (
+                  <div className="form-error">
+                    {formStatus.error}
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  className={`form-submit ${isSubmitting ? 'submitting' : ''}`}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="submit-spinner"></span>
+                      Sending...
+                    </>
+                  ) : 'Send Message'}
+                </button>
+              </>
+            )}
           </motion.form>
         </div>
       </div>

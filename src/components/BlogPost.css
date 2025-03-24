@@ -1,27 +1,43 @@
 .blog-post {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding-top: 2rem;
+  padding-top: 8rem;
+  position: relative;
 }
 
 .blog-post-content {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--secondary-color);
+  color: var(--accent-color);
   text-decoration: none;
   margin-bottom: 2rem;
   font-weight: 500;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+  z-index: 10;
+  padding: 0.5rem 0;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  transform: translateX(-5px);
+  color: var(--primary-color);
+}
+
+.back-link svg {
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover svg {
+  transform: translateX(-3px);
 }
 
 .post-header {
