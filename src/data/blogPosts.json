@@ -1,0 +1,56 @@
+[
+  {
+    "content": "Confluence Exploit Leads to LockBit Ransomware Key Takeaways The intrusion began with the exploitation of CVE-2023-22527 on an exposed Windows Confluence server, ultimately leading to the deployment of LockBit ransomware across the environment. The threat actor leveraged various tools, including Mimikatz, Metasploit, and AnyDesk. The threat actor leveraged RDP for lateral movement, deploying LockBit ransomware through multiple methods, including copying files over SMB shares for remote execution and automated distribution via PDQ Deploy. Sensitive data was exfiltrated using Rclone, transferring files to MEGA.io cloud storage. The intrusion had a rapid Time to Ransom (TTR) of around just two hours.",
+    "permalink": "https://bluegates.netlify.app/posts/confluence-exploit-leads-to-lockbit-ransomware/",
+    "summary": "Confluence Exploit Leads to LockBit Ransomware Key Takeaways The intrusion began with the exploitation of CVE-2023-22527 on an exposed Windows Confluence server, ultimately leading to the deployment of LockBit ransomware across the environment. The threat actor leveraged various tools, including Mimikatz, Metasploit, and AnyDesk. The threat actor leveraged RDP for lateral movement, deploying LockBit ransomware through multiple methods, including copying files over SMB shares for remote execution and automated distribution via PDQ Deploy.",
+    "title": "Confluence Exploit Leads to LockBit Ransomware"
+  },
+  {
+    "content": "How to Bypass WAF in 2025: Challenges and Solutions May 9, 2023 · 9 min read\nHow many times has a site blocked the requests made by your web scraper? Most of the time, that's due to WAFs, application-level firewalls that come with several defense systems to block undesired traffic.\nThey rely on several advanced techniques, but keep calm! There's always a way to get around them. Here, you'll learn how to bypass WAF protections and scrape any site.",
+    "permalink": "https://bluegates.netlify.app/posts/bypass-waf/",
+    "summary": "How to Bypass WAF in 2025: Challenges and Solutions May 9, 2023 · 9 min read\nHow many times has a site blocked the requests made by your web scraper? Most of the time, that's due to WAFs, application-level firewalls that come with several defense systems to block undesired traffic.\nThey rely on several advanced techniques, but keep calm! There's always a way to get around them. Here, you'll learn how to bypass WAF protections and scrape any site.",
+    "title": "Bypass Waf"
+  },
+  {
+    "content": " Static vs Dynamic Analysis Malware analysis is divided into two primary techniques: static and dynamic analysis.\nComparison: Static Analysis Dynamic Analysis Code inspection without execution Analyzing malware behavior in execution Fast and lightweight Requires sandbox environment Cannot detect obfuscated code Can bypass obfuscation Understanding when to use each method is key to effective malware analysis. 🔍\n",
+    "permalink": "https://bluegates.netlify.app/posts/static-vs-dynamic-malware-analysis/",
+    "summary": "Static vs Dynamic Analysis Malware analysis is divided into two primary techniques: static and dynamic analysis.\nComparison: Static Analysis Dynamic Analysis Code inspection without execution Analyzing malware behavior in execution Fast and lightweight Requires sandbox environment Cannot detect obfuscated code Can bypass obfuscation Understanding when to use each method is key to effective malware analysis. 🔍",
+    "title": "Static vs Dynamic Malware Analysis"
+  },
+  {
+    "content": " Why SIEM is Critical Security Information and Event Management (SIEM) platforms are essential for monitoring and responding to security events.\nTopics Covered: Setting up custom detection rules Correlating security events for better visibility Tuning SIEM to reduce false positives Effective SIEM rules can significantly improve your detection capabilities. 🛡️\n",
+    "permalink": "https://bluegates.netlify.app/posts/mastering-siem-building-effective-detection-rules/",
+    "summary": "Why SIEM is Critical Security Information and Event Management (SIEM) platforms are essential for monitoring and responding to security events.\nTopics Covered: Setting up custom detection rules Correlating security events for better visibility Tuning SIEM to reduce false positives Effective SIEM rules can significantly improve your detection capabilities. 🛡️",
+    "title": "Mastering Siem: Building Effective Detection Rules"
+  },
+  {
+    "content": " Introduction Cyber threats are becoming more sophisticated, requiring better detection and response capabilities. This post explores common threat vectors and how to analyze them effectively.\nKey Points: Common malware techniques used in the wild How to detect malware using dynamic analysis Understanding rootkit behavior in kernel-level attacks Stay tuned for more insights! 🚀\n",
+    "permalink": "https://bluegates.netlify.app/posts/exploring-threats-and-malware-in-the-wild/",
+    "summary": "Introduction Cyber threats are becoming more sophisticated, requiring better detection and response capabilities. This post explores common threat vectors and how to analyze them effectively.\nKey Points: Common malware techniques used in the wild How to detect malware using dynamic analysis Understanding rootkit behavior in kernel-level attacks Stay tuned for more insights! 🚀",
+    "title": "Exploring Threats and Malware in the Wild"
+  },
+  {
+    "content": "Executive Summary Emotet is a sophisticated banking trojan that has evolved into a modular malware distribution platform. This analysis reveals its multi-stage infection process, advanced evasion techniques, and ability to deliver additional payloads like TrickBot and Ryuk ransomware. The sample shows significant improvements in anti-analysis capabilities compared to earlier variants.\nThreat Level: Critical\nFamily: Emotet\nAliases: Heodo, Feodo\nDiscovered: Initially 2014, this variant from January 2023\nPlatform: Windows\nSample Information Attribute Value File Name invoice_29381.",
+    "permalink": "https://bluegates.netlify.app/posts/emotet-analysis/",
+    "summary": "Executive Summary Emotet is a sophisticated banking trojan that has evolved into a modular malware distribution platform. This analysis reveals its multi-stage infection process, advanced evasion techniques, and ability to deliver additional payloads like TrickBot and Ryuk ransomware. The sample shows significant improvements in anti-analysis capabilities compared to earlier variants.\nThreat Level: Critical\nFamily: Emotet\nAliases: Heodo, Feodo\nDiscovered: Initially 2014, this variant from January 2023\nPlatform: Windows\nSample Information Attribute Value File Name invoice_29381.",
+    "title": "Emotet Analysis"
+  },
+  {
+    "content": "👋 Hi, I'm Febrian Tisna I'm passionate about Cyber Security, focusing on Blue Teaming and Malware Analysis.\n🚀 My Background: 🛡️ Completed SOC Blue Team Bootcamp at Hacktrace 🏆 Achieved Rank 7 in Hacktrace Ranges Defensive Lab 🔎 Skilled in Malware Analysis (Static and Dynamic), PCAP Analysis, and SIEM 💻 Exploring Red Teaming to strengthen my defense skills 🧠 Current Focus: Building a personal blog focused on Blue Teaming and Red Teaming at pepbritisnasetiawan.github.io 🌐 Find Me Here: 🔗 GitHub 🔗 LinkedIn 📧 Email \"Security is not a product, but a process.\"\n",
+    "permalink": "https://bluegates.netlify.app/about/",
+    "summary": "👋 Hi, I'm Febrian Tisna I'm passionate about Cyber Security, focusing on Blue Teaming and Malware Analysis.\n🚀 My Background: 🛡️ Completed SOC Blue Team Bootcamp at Hacktrace 🏆 Achieved Rank 7 in Hacktrace Ranges Defensive Lab 🔎 Skilled in Malware Analysis (Static and Dynamic), PCAP Analysis, and SIEM 💻 Exploring Red Teaming to strengthen my defense skills 🧠 Current Focus: Building a personal blog focused on Blue Teaming and Red Teaming at pepbritisnasetiawan.",
+    "title": "About"
+  },
+  {
+    "content": "test\n",
+    "permalink": "https://bluegates.netlify.app/posts/malware-analysis-hun/",
+    "summary": "test",
+    "title": "Malware Analysis Hun"
+  },
+  {
+    "content": " This is the content of my first blog post!\n",
+    "permalink": "https://bluegates.netlify.app/posts/first-post/",
+    "summary": "This is the content of my first blog post!",
+    "title": "First Post"
+  }
+] 

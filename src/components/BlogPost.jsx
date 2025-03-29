@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import './BlogPost.css';
+import '../styles/BlogPost.css';
 
 const BlogPost = () => {
   const { id } = useParams();

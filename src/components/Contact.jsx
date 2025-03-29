@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import './Contact.css';
+import '../styles/Contact.css';
 
 const Contact = () => {
   const form = useRef();

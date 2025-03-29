@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
-import './Navbar.css';
+import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -254,12 +254,11 @@ const Navbar = () => {
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
           <motion.div 
-            className="theme-toggle-circle"
-            initial={false}
-            animate={{ 
-              x: theme === 'dark' ? 24 : 0,
-              backgroundColor: theme === 'dark' ? '#f1c40f' : '#f8f9fa'
-            }}
+            className="theme-toggle-icon"
+            key={theme}
+            initial={{ rotate: -45, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 45, opacity: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           >
             {theme === 'dark' ? (
