@@ -70,55 +70,6 @@
   color: var(--accent-color);
 }
 
-/* Theme toggle button */
-.theme-toggle {
-  background: var(--light-bg);
-  border: none;
-  width: 50px;
-  height: 26px;
-  border-radius: 13px;
-  padding: 3px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  position: relative;
-  transition: background-color 0.3s ease;
-}
-
-.theme-toggle:hover {
-  background: var(--accent-color);
-  opacity: 0.9;
-}
-
-.theme-toggle-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.theme-icon {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-}
-
-[data-theme='dark'] .theme-toggle {
-  background: #2c3e50;
-}
-
-.theme-toggle:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--accent-color);
-}
-
-.theme-toggle:active .theme-toggle-circle {
-  transform: scale(0.95);
-}
-
 /* Hamburger menu button - improved animation */
 .hamburger-menu {
   position: fixed;
@@ -412,30 +363,6 @@
   padding-top: 2rem;
 }
 
-/* Improved mobile theme toggle */
-.mobile-theme-toggle {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(var(--light-bg-rgb, 248, 249, 250), 0.5);
-  padding: 1rem 1.5rem;
-  border-radius: 16px;
-  margin-bottom: 2rem;
-  height: auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(var(--primary-color-rgb, 26, 26, 26), 0.05);
-}
-
-.mobile-theme-toggle:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-}
-
-.mobile-theme-toggle span {
-  font-weight: 500;
-}
-
 /* Improved social links */
 .mobile-social-links {
   display: flex;
@@ -461,21 +388,6 @@
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   background-color: var(--card-bg);
-}
-
-/* Add these CSS variables to your :root in App.css */
-:root {
-  --primary-color-rgb: 26, 26, 26;
-  --accent-color-rgb: 0, 102, 255;
-  --light-bg-rgb: 248, 249, 250;
-  --card-bg-rgb: 255, 255, 255;
-}
-
-[data-theme='dark'] {
-  --primary-color-rgb: 255, 255, 255;
-  --accent-color-rgb: 61, 145, 255;
-  --light-bg-rgb: 30, 30, 30;
-  --card-bg-rgb: 30, 30, 30;
 }
 
 /* Responsive styles */
